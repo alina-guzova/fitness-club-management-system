@@ -6,11 +6,12 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.5.5</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
 	<groupId>com.github.alinaguzova.projects</groupId>
 	<artifactId>fitness-club-management-system</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>fitness-club-management-system</name>
 	<description>Project for Spring Boot</description>
 	<url/>
