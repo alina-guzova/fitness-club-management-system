@@ -24,6 +24,48 @@
 - **Maven** — сборка проекта и управление зависимостями
 
 ---
+## Запуск через Docker
+
+### Предварительные шаги
+
+Убедитесь, что установлены:
+
+- [Docker](https://www.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/)
+
+Клонируйте репозиторий:
+
+```bash
+git clone https://github.com/alina-guzova/fitness-club-management-system.git
+cd fitness-club-management-system
+```
+
+### Запуск контейнеров
+
+```bash
+docker-compose up --build
+```
+Это создаст два контейнера: `app` (Spring Boot) и `db` (MySQL 8).  
+Приложение будет доступно по адресу: [http://localhost:8080](http://localhost:8080)
+
+
+### Инициализация базы данных
+
+После запуска контейнеров необходимо вручную выполнить SQL-скрипт `init.sql`, чтобы создать таблицы и заполнить их данными.
+Убедитесь, что файл `init.sql` находится в папке `db-init` в корне проекта.
+
+#### Через **cmd.exe** (Windows):
+
+```bash
+docker exec -i fitness-club-management-system-db-1 mysql -u root -p1003 fitness_club < db-init\init.sql
+```
+#### Через **Git Bash**:
+
+```bash
+docker exec -i fitness-club-management-system-db-1 mysql -u root -p1003 fitness_club < ./db-init/init.sql
+```
+> ⚠️ При необходимости настройте SPRING_DATASOURCE_URL в docker-compose.yml для подключения к внешнему контейнеру.
+---
 ## Архитектура проекта
 
 #### Роли и зоны доступа
@@ -124,6 +166,10 @@
 ```
 
 ### Методы для работы с данными клиентов
+> ⚠️ Войти как админ:
+> <br>Логин: alina
+> <br>Пароль: alina
+
 <details>
 <summary>Получение списка всех клиентов</summary>
 
@@ -848,9 +894,7 @@ Content-Type: application/json
 
 > ▶️ Описание функций свернуто для удобства. Нажмите на заголовок, чтобы раскрыть примеры запросов и ответов.
 
-
 ---
-
 
 ## Работа системы от имени клиента (`CLIENT`)
 
@@ -884,8 +928,10 @@ Content-Type: application/json
   ]
 }
 ```
-
 ### Управление своим профилем
+> ⚠️ Войти как клиент:
+> <br>Логин: nikolai
+> <br>Пароль: nikolai
 
 <details>
 <summary>Просмотр собственного профиля (успешный и ошибочный сценарий) </summary>
